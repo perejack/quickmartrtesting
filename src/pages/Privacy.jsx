@@ -39,14 +39,17 @@ const Privacy = () => {
               <h2 className="text-xl font-semibold text-gray-900">Information We Collect</h2>
             </div>
             <p className="text-gray-600 mb-4">
-              When you submit a job application, we collect the following types of information:
+              When you submit a job application, we collect the following minimal information:
             </p>
             <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
-              <li><strong>Personal Information:</strong> Name, email address, phone number, date of birth, and national ID/passport number.</li>
-              <li><strong>Professional Information:</strong> Education history, work experience, skills, and qualifications.</li>
-              <li><strong>Documents:</strong> CV, certificates, and other supporting documents you choose to upload.</li>
-              <li><strong>Demographic Information:</strong> County of residence and preferred work location.</li>
+              <li><strong>Personal Information:</strong> First name and last name.</li>
+              <li><strong>Location:</strong> Preferred work county in Kenya.</li>
+              <li><strong>Education:</strong> Highest education level completed.</li>
             </ul>
+            <p className="text-gray-600 mt-4">
+              We do not collect sensitive personal information such as ID numbers, dates of birth, 
+              email addresses, or phone numbers through our website.
+            </p>
           </section>
 
           <Separator />
@@ -57,15 +60,13 @@ const Privacy = () => {
               <h2 className="text-xl font-semibold text-gray-900">How We Use Your Information</h2>
             </div>
             <p className="text-gray-600 mb-4">
-              We use the information we collect for the following purposes:
+              We use the minimal information we collect for the following purposes:
             </p>
             <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
-              <li>To process and evaluate your job application</li>
-              <li>To contact you regarding your application status</li>
-              <li>To schedule interviews and assessments</li>
-              <li>To verify your qualifications and references</li>
-              <li>To comply with legal and regulatory requirements</li>
-              <li>To improve our recruitment processes</li>
+              <li>To process your preliminary job application</li>
+              <li>To match you with suitable positions in your preferred county</li>
+              <li>To assess your education level against job requirements</li>
+              <li>To generate anonymized recruitment statistics</li>
             </ul>
           </section>
 

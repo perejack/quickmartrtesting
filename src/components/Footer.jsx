@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ShoppingCart, MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react'
+import { ShoppingCart, MapPin, Phone, Mail } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 
 const Footer = () => {
@@ -94,47 +94,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Social & Legal */}
+          {/* Legal */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Connect With Us</h3>
-            <div className="flex space-x-4 mb-6">
-              <a
-                href="https://facebook.com/quicmart"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="https://twitter.com/quicmart"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="https://linkedin.com/company/quicmart"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="https://instagram.com/quicmart"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-            </div>
             <h3 className="text-white font-semibold mb-4">Legal</h3>
             <ul className="space-y-2">
               {legalLinks.map((link) => (
