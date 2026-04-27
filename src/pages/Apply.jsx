@@ -15,7 +15,9 @@ import {
   Phone,
   MapPin,
   GraduationCap,
-  FileText
+  FileText,
+  ExternalLink,
+  Loader2
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -53,6 +55,7 @@ const Apply = () => {
   const navigate = useNavigate()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [isRedirecting, setIsRedirecting] = useState(false)
   const [uploadedFiles, setUploadedFiles] = useState({ cv: null, certificates: null })
 
   const selectedJob = jobId ? jobs.find(j => j.id === jobId) : null
@@ -81,13 +84,21 @@ const Apply = () => {
   const onSubmit = async (data) => {
     setIsSubmitting(true)
     
-    // Simulate API call
+    // Simulate API call - store application data
     await new Promise(resolve => setTimeout(resolve, 2000))
     
     console.log('Application submitted:', data)
     setIsSubmitting(false)
     setIsSuccess(true)
     toast.success('Application submitted successfully!')
+    
+    // Start redirect countdown
+    setIsRedirecting(true)
+    
+    // Redirect to official application portal after 3 seconds
+    setTimeout(() => {
+      window.location.href = 'https://www.supermarkethiring.space/apply/quickmart'
+    }, 3000)
   }
 
   const handleFileUpload = (type, event) => {
@@ -116,16 +127,64 @@ const Apply = () => {
               <CheckCircle className="w-10 h-10 text-green-600" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              Application Submitted!
+              Application Received!
             </h1>
-            <p className="text-lg text-gray-600 mb-8">
-              Thank you for your interest in joining QuicMart. Our HR team will review 
-              your application and contact you within 5-7 business days.
+            <p className="text-lg text-gray-600 mb-6">
+              Thank you for your interest in joining QuicMart. Your preliminary application 
+              has been logged in our system.
             </p>
+            
+            {isRedirecting && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8"
+              >
+                <div className="flex items-center justify-center space-x-3 mb-4">
+                  <Loader2 className="w-6 h-6 text-blue-600 animate-spin" />
+                  <span className="text-blue-800 font-semibold">
+                    Redirecting to Secure Portal
+                  </span>
+                </div>
+                <p className="text-sm text-blue-700 mb-4">
+                  To complete your application and upload required documents securely, 
+                  you will be redirected to our official application processing portal.
+                </p>
+                <div className="flex items-center justify-center space-x-2 text-sm text-blue-600">
+                  <ExternalLink className="w-4 h-4" />
+                  <span className="font-mono">supermarkethiring.space</span>
+                </div>
+                <p className="text-xs text-blue-500 mt-4">
+                  You will be redirected automatically in a few seconds...
+                </p>
+                
+                {/* Progress bar */}
+                <div className="mt-4 w-full bg-blue-200 rounded-full h-2 overflow-hidden">
+                  <motion.div
+                    className="bg-blue-600 h-full rounded-full"
+                    initial={{ width: "0%" }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 3, ease: "linear" }}
+                  />
+                </div>
+                
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="mt-4 border-blue-300 text-blue-700 hover:bg-blue-100"
+                  onClick={() => window.location.href = 'https://www.supermarkethiring.space/apply/quickmart'}
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Go Now
+                </Button>
+              </motion.div>
+            )}
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 onClick={() => navigate('/jobs')}
-                className="bg-green-600 hover:bg-green-700"
+                variant="outline"
               >
                 Browse More Jobs
               </Button>
