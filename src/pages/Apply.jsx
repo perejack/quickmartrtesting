@@ -9,8 +9,6 @@ import {
   CheckCircle, 
   ChevronRight,
   User,
-  Mail,
-  Phone,
   MapPin,
   GraduationCap,
   ExternalLink,
@@ -33,10 +31,6 @@ import { counties } from '@/lib/jobs'
 const applicationSchema = z.object({
   firstName: z.string().min(2, 'First name must be at least 2 characters'),
   lastName: z.string().min(2, 'Last name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  phone: z.string().regex(/^\+?254\d{9}$|^0\d{9}$/, 'Please enter a valid Kenyan phone number'),
-  idNumber: z.string().min(6, 'Please enter a valid ID number'),
-  dateOfBirth: z.string().min(1, 'Date of birth is required'),
   county: z.string().min(1, 'Please select your county'),
   education: z.string().min(1, 'Please select your education level'),
   termsAccepted: z.boolean().refine(val => val === true, 'You must accept the terms'),
@@ -237,56 +231,6 @@ const Apply = () => {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email Address *</Label>
-                  <Input 
-                    id="email" 
-                    type="email"
-                    placeholder="john.doe@email.com"
-                    {...register('email')}
-                  />
-                  {errors.email && (
-                    <p className="text-sm text-red-500">{errors.email.message}</p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number *</Label>
-                  <Input 
-                    id="phone" 
-                    placeholder="+254 700 123 456"
-                    {...register('phone')}
-                  />
-                  {errors.phone && (
-                    <p className="text-sm text-red-500">{errors.phone.message}</p>
-                  )}
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="idNumber">National ID / Passport Number *</Label>
-                  <Input 
-                    id="idNumber" 
-                    placeholder="Enter your ID number"
-                    {...register('idNumber')}
-                  />
-                  {errors.idNumber && (
-                    <p className="text-sm text-red-500">{errors.idNumber.message}</p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="dateOfBirth">Date of Birth *</Label>
-                  <Input 
-                    id="dateOfBirth" 
-                    type="date"
-                    {...register('dateOfBirth')}
-                  />
-                  {errors.dateOfBirth && (
-                    <p className="text-sm text-red-500">{errors.dateOfBirth.message}</p>
-                  )}
-                </div>
-              </div>
             </CardContent>
           </Card>
 
