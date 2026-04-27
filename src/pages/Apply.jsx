@@ -17,7 +17,6 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Checkbox } from '@/components/ui/checkbox'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import {
   Select,
@@ -33,7 +32,6 @@ const applicationSchema = z.object({
   lastName: z.string().min(2, 'Last name must be at least 2 characters'),
   county: z.string().min(1, 'Please select your county'),
   education: z.string().min(1, 'Please select your education level'),
-  termsAccepted: z.boolean().refine(val => val === true, 'You must accept the terms'),
 })
 
 const Apply = () => {
@@ -50,10 +48,7 @@ const Apply = () => {
     setValue,
     formState: { errors }
   } = useForm({
-    resolver: zodResolver(applicationSchema),
-    defaultValues: {
-      termsAccepted: false
-    }
+    resolver: zodResolver(applicationSchema)
   })
 
   useEffect(() => {
@@ -285,36 +280,6 @@ const Apply = () => {
                 {errors.education && (
                   <p className="text-sm text-red-500">{errors.education.message}</p>
                 )}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Terms */}
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-start space-x-3">
-                <Checkbox 
-                  id="terms"
-                  {...register('termsAccepted')}
-                />
-                <div className="space-y-1">
-                  <Label htmlFor="terms" className="font-normal cursor-pointer">
-                    I confirm that all information provided is accurate and complete. 
-                    I understand that providing false information may result in disqualification 
-                    from the application process. I agree to the{' '}
-                    <Link to="/terms" className="text-green-600 hover:underline">
-                      Terms of Service
-                    </Link>{' '}
-                    and{' '}
-                    <Link to="/privacy" className="text-green-600 hover:underline">
-                      Privacy Policy
-                    </Link>
-                    .
-                  </Label>
-                  {errors.termsAccepted && (
-                    <p className="text-sm text-red-500">{errors.termsAccepted.message}</p>
-                  )}
-                </div>
               </div>
             </CardContent>
           </Card>
